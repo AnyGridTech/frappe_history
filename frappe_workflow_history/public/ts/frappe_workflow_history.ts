@@ -4,20 +4,16 @@ import { FrappeForm, TabVersion, VersionData } from "@anygridtech/frappe-types/c
 declare global {
   interface Window {
     cur_frm?: FrappeForm;
-    frappe: any;
   }
-  const frappe: any;
-  const cur_frm: FrappeForm;
-  const __: (text: string) => string;
   const workflow_history: {
     load_history_field: () => Promise<void>;
   };
 }
 
-frappe.provide("workflow_history.load_history_field");
+frappe.provide("frappe_workflow_history.load_history_field");
 
 function destroyHistoryContainer() {
-  const old = document.getElementById("workflow-history");
+  const old = document.getElementById("frappe-workflow-history");
   if (old && old.parentNode) {
     old.parentNode.removeChild(old);
   }
@@ -46,7 +42,7 @@ workflow_history.load_history_field = async () => {
 
   // Create/inject the container in the correct location
   let historyContainer = document.createElement("div");
-  historyContainer.id = "growatt-workflow-history";
+  historyContainer.id = "frappe-workflow-history";
   historyContainer.className = "timeline-section mt-4";
 
   // Try to insert before comments section, 
@@ -155,8 +151,8 @@ workflow_history.load_history_field = async () => {
 //     "IT Request"
 //   ].forEach(dt => {
 //     frappe.ui.form.on(dt, {
-//       refresh: () => growatt.workflow.load_history_field(),
-//       after_save: () => growatt.workflow.load_history_field(),
+//       refresh: () => frappe_workflow_history.load_history_field(),
+//       after_save: () => frappe_workflow_history.load_history_field(),
 //       on_cancel: () => destroyHistoryContainer(),
 //       before_close: () => destroyHistoryContainer(),
 //     });
