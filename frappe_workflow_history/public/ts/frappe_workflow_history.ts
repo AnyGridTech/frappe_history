@@ -5,7 +5,7 @@ declare global {
   interface Window {
     cur_frm?: FrappeForm;
   }
-  const workflow_history: {
+  const frappe_workflow_history: {
     load_history_field: () => Promise<void>;
   };
 }
@@ -18,7 +18,7 @@ function destroyHistoryContainer() {
     old.parentNode.removeChild(old);
   }
 }
-workflow_history.load_history_field = async () => {
+frappe_workflow_history.load_history_field = async () => {
   if (!window.cur_frm || !cur_frm.doc || !cur_frm.doc.name || !cur_frm.doctype) {
     destroyHistoryContainer();
     return;
@@ -168,14 +168,14 @@ if (frappe?.ui?.form?.on) {
       // Add history hooks
       const original_refresh = handlers.refresh;
       handlers.refresh = function (frm: any) {
-        workflow_history.load_history_field();
+        frappe_workflow_history.load_history_field();
         if (typeof original_refresh === 'function') {
           original_refresh.call(this, frm);
         }
       };
       const original_after_save = handlers.after_save;
       handlers.after_save = function (frm: any) {
-        workflow_history.load_history_field();
+        frappe_workflow_history.load_history_field();
         if (typeof original_after_save === 'function') {
           original_after_save.call(this, frm);
         }

@@ -7,7 +7,7 @@ function destroyHistoryContainer() {
     old.parentNode.removeChild(old);
   }
 }
-workflow_history.load_history_field = async () => {
+frappe_workflow_history.load_history_field = async () => {
   if (!window.cur_frm || !cur_frm.doc || !cur_frm.doc.name || !cur_frm.doctype) {
     destroyHistoryContainer();
     return;
@@ -120,14 +120,14 @@ if (frappe?.ui?.form?.on) {
       const handlers = args[1];
       const original_refresh = handlers.refresh;
       handlers.refresh = function(frm) {
-        workflow_history.load_history_field();
+        frappe_workflow_history.load_history_field();
         if (typeof original_refresh === "function") {
           original_refresh.call(this, frm);
         }
       };
       const original_after_save = handlers.after_save;
       handlers.after_save = function(frm) {
-        workflow_history.load_history_field();
+        frappe_workflow_history.load_history_field();
         if (typeof original_after_save === "function") {
           original_after_save.call(this, frm);
         }
