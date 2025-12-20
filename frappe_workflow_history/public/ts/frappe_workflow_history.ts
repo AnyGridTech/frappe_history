@@ -141,12 +141,12 @@ frappe_workflow_history.load_history_field = async () => {
 // // Hook para garantir atualização/destruição ao trocar de formulário
 // if (frappe?.ui?.form?.on) {
 //   [
-//     "Service Protocol Inverter Checklist",
-//     "Service Protocol EV Charger Checklist",
-//     "Service Protocol Battery Checklist",
-//     "Service Protocol Datalogger Checklist",
-//     "Service Protocol Smart Meter Checklist",
-//     "Service Protocol Smart Energy Manager Checklist",
+//     "Checklist of Inverter",
+//     "Checklist of EV Charger",
+//     "Checklist of Battery",
+//     "Checklist of Datalogger",
+//     "Checklist of Smart Meter",
+//     "Checklist of Smart Energy Manager",
 //     "Compliance Statement",
 //     "IT Request"
 //   ].forEach(dt => {
